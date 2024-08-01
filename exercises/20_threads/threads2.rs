@@ -2,13 +2,13 @@
 // work. But this time, the spawned threads need to be in charge of updating a
 // shared value: `JobStatus.jobs_done`
 
-use std::{os::macos::raw::stat, sync::{Arc, Mutex}, thread, time::Duration};
+use std::{sync::{Arc, Mutex}, thread, time::Duration};
 
 struct JobStatus {
     jobs_done: u32,
 }
 
-fn main() {
+fn main() { 
     // TODO: `Arc` isn't enough if you want a **mutable** shared state.
     let status = Arc::new(Mutex::new(JobStatus { jobs_done: 0 }));
 
